@@ -62,7 +62,7 @@ Note this should overwrite the other images in `/models/coco_AttnGAN2/example_ca
 
 ## Examples
 
-Interestingly, when the quality of the image degrades the caption still remains true to the meaning of the original image! The result is an impressive overall stability in the image quality after the initial drop-off. It's fun to try to understand what cues the model is taking in order to determine the caption.
+In these graphics each image is generated using the one on its left as the base. Interestingly, when the quality of the image degrades the caption still remains true to the meaning of the original image! The result is an impressive overall stability in the image quality after the initial drop-off. It's fun to try to understand what cues the model is taking in order to determine the caption.
 
 ![baseball](baseball.png)
 

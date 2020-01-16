@@ -2,13 +2,15 @@
 
 TelephoneGAN is a framework for generating semantically-related images from a base input image, essentially by conditioning an AttnGAN model on the output of an image captioning model.
 
-![header](header.png)
+![kite](assets/kite.png)
+
+![cow](assets/cow.png)
 
 ## Introduction
 
 Semantically-related images are ones whose contents are very similar to one another - but not necessarily visually similar. For instance, two photos of a brown bear might look very different - one could show a forest with the bear somewhere in the foreground (a mostly green photo), and the other could show a closeup of the bear (a mostly brown photo). We can search for semantically-related images in a database if the images are *indexed*. We can also use GANs to generate *visually similar* images from scratch. Here, we'll combine these ideas to generate *semantically-related* images *from scratch*.
 
-![bear-comparison](bear-comparison.png)
+![bear-comparison](assets/bear-comparison.png)
 
 To do this, we can use a [CNN-LSTM model](https://github.com/yunjey/pytorch-tutorial/tree/master/tutorials/03-advanced/image_captioning) to produce an image caption for our base image, then write that caption to a file that is subsequently used as input for an [AttnGAN model](https://github.com/taoxugit/AttnGAN) for text-to-image synthesis. The result is a purely computer-generated image with the same semantic meaning as the original, even though it may look quite different! We'll use models pre-trained on the MS COCO dataset to demonstrate.
 
@@ -41,7 +43,7 @@ You'll also need to download the pre-trained models:
 
 ### 2. Generate images
 
-You can add base images (choose from the [COCO dataset](http://cocodataset.org/#download), e.g. 2014 Val) to the `/input/` directory. Now allow permissions and run the bash script to generate the images! Don't forget to include your base image as an argument.
+You can add base images (choose from the [COCO dataset](http://cocodataset.org/#download), e.g. 2014 Test) to the `/input/` directory. Now allow permissions and run the bash script to generate the images! Don't forget to include your base image as an argument.
 
 ```bash
 chmod +x run.sh
@@ -64,13 +66,29 @@ Note this should overwrite the other images in `/models/coco_AttnGAN2/example_ca
 
 In these graphics each image is generated using the one on its left as the base. Interestingly, when the quality of the image degrades the caption still remains true to the meaning of the original image! The result is an impressive overall stability in the image quality after the initial drop-off. It's fun to try to understand what cues the model is taking in order to determine the caption.
 
-![baseball](baseball.png)
+![baseball](assets/baseball.png)
 
 *These are all "baseball players swinging a bat".*
 
-![bear](bear.png)
+![bear](assets/bear.png)
 
 *But this bear went from brown to black!*
+
+![kite](assets/kite.png)
+
+*These kites are pretty convincing.*
+
+![cow](assets/cow.png)
+
+*This example is particularly stable.*
+
+![room](assets/room.png)
+
+*A "person" showed up in the final image here. (What attribute of the second-last image would cause this?)*
+
+![surf](assets/surf.png)
+
+*In this case the image quality actually improved as the caption happened to change slightly!*
 
 ## Troubleshooting & extras
 
